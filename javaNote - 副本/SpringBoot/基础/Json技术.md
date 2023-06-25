@@ -1,1 +1,0 @@
-在Spring中使用`@ResponseBody`注解可以将方法返回的对象序列化成JSON
