@@ -1,0 +1,74 @@
+# spring aop 中@annotation()的使用
+
+在自定义个注解之后，通过这个注解，标注需要切入的方法，同时把需要的参数传到切面去。那么我们怎么在切面使用这个注解。
+我们使用这个自定义注解一方面是为了传一些参数，另一方面也是为了省事。
+
+一般，别人的切面都是这么写的
+先声明一个切入点。
+
+//切入点签名
+
+```JAVA
+@Pointcut("execution(* com.lxk.spring.aop.annotation.PersonDaoImpl.*(..))")
+private void pointCut() {
+}
+```
+
+切入点声明OK之后，就是在不同的 advice 里面使用。一般都是如下使用。
+下面的暂时是不带注解的
+//前置通知
+
+```JAVA
+@Before("aa()")
+```
+
+//后置通知
+
+```JAVA
+@AfterReturning(value = "aa()", returning = "val")
+public void afterMethod(JoinPoint joinPoint, Object val) {}
+```
+
+
+//最终通知
+
+```JAVA
+@After("pointCut()")
+```
+
+//环绕通知
+
+```JAVA
+@Around("pointCut()")
+```
+
+//异常通知
+
+```java
+@AfterThrowing(value = "pointCut()", throwing = "ex")
+public void throwingMethod(Throwable ex) {}
+```
+
+这些切面方法里面的参数。JoinPoint joinPoint，这个是哪个都可以加的。加不加随意。需要的话就加。是可以用的。
+
+
+
+
+
+要是带个咱自定义的注解呢？
+我又看到很多人都是如下写的。
+我就不全部带上了，就以这个after为例，看看是如何写的吧
+
+```java
+@After(value = "pointCut() && @annotation(methodLog)", argNames = "joinPoint, methodLog")
+public void methodAfter(JoinPoint joinPoint, MethodLog methodLog) throws Throwable {}
+```
+
+按照上面这写，没毛病，因为别人都是这么写的，我也确实验证了，这个能拿到咱定义的注解，以及注解上的参数。
+
+也能这么写
+
+```java
+@AfterReturning(pointcut = "@annotation(methodLog)",  argNames = "joinPoint, methodLog")
+```
+

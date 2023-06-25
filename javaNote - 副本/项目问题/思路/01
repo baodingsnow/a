@@ -1,0 +1,14 @@
+```web-idl
+测试报告下载地址
+http://10.255.35.118:8080/artifactory/VbspRepo/IDP/SOA_EXECUTE/qacreport/BUILD01_TiMgrSrvExe_QAC.tar.gz
+```
+
+VbspRepo/IDP/SOA_EXECUTE/qacreport/BUILD01_TiMgrSrvExe_QAC.tar.gz
+
+
+
+```web-idl
+制品下载地址
+http://10.255.35.118:8080/artifactory/ui/artifactactions/downloadfolder?repoKey=VbspRepo&path=IDP%2FSOA_EXECUTE%2Fdev%2FTiMgrSrvExe&archiveType=zip&includeChecksumFiles=false
+```
+

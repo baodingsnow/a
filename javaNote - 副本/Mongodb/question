@@ -1,0 +1,17 @@
+# 整合springboot
+
+报错   配置数据源
+
+```
+解决
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+如果没有对数据源进行配置需要去掉查询数据员
+```
+
+# 保存的数据和输入的不一致、
+
+这是一个坑，和mongodb没关系
+
+不一致的原因是@Data注解没生效，无法从实体参数中读取数据，也就是get和set方法没了。
+
+没没有生效的原因是jdk版本 的问题  从java11换到8就好了  略坑
